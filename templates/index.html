@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Profile Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <header class="header">
+    <div class="logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#0A66C2"/>
+        <path d="M8 12h4v12H8V12zm2-4a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm6 4h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v6.25h-4v-5.54c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.92v5.64h-4V12z" fill="#fff"/>
+      </svg>
+      <span>Profile Analyzer</span>
+    </div>
+    <p class="tagline">Enter your LinkedIn profile details and get a score with actionable improvements</p>
+  </header>
+
+  <main class="container">
+    <section class="input-card card">
+      <h2 class="form-title">Profile Details</h2>
+      <p class="form-hint">Copy the sections from your LinkedIn profile and paste them below.</p>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="profile-name-input" class="label">Name <span class="required">*</span></label>
+          <input type="text" id="profile-name-input" placeholder="Jane Doe" autocomplete="name">
+        </div>
+
+        <div class="form-group full-width">
+          <label for="profile-headline-input" class="label">Headline</label>
+          <input type="text" id="profile-headline-input" placeholder="Senior Software Engineer | Building scalable products">
+        </div>
+
+        <div class="form-group full-width">
+          <label for="profile-about-input" class="label">About</label>
+          <textarea id="profile-about-input" rows="5" placeholder="Tell your professional story, key achievements, and what you're passionate about..."></textarea>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="profile-skills-input" class="label">Skills</label>
+          <textarea id="profile-skills-input" rows="3" placeholder="Python, JavaScript, React, AWS, Project Management (comma-separated)"></textarea>
+          <span class="field-hint">Separate skills with commas</span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button id="analyze-btn" class="btn btn-primary">
+          <span class="btn-text">Analyze Profile</span>
+          <span class="spinner hidden"></span>
+        </button>
+      </div>
+      <p id="error-msg" class="error-msg hidden"></p>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="score-card card">
+        <div class="score-ring" id="score-ring">
+          <svg viewBox="0 0 120 120">
+            <circle class="ring-bg" cx="60" cy="60" r="52"/>
+            <circle class="ring-fill" cx="60" cy="60" r="52" id="score-circle"/>
+          </svg>
+          <div class="score-value">
+            <span id="score-number">0</span>
+            <span class="score-label">/ 100</span>
+          </div>
+        </div>
+        <div class="score-details">
+          <h2 id="profile-name">—</h2>
+          <p id="profile-headline" class="headline">—</p>
+          <div class="breakdown" id="breakdown"></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>About</h3>
+          <p id="profile-about" class="about-text">—</p>
+        </div>
+        <div class="card">
+          <h3>Suggestions</h3>
+          <ul id="suggestions-list" class="suggestions"></ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Skills <span id="skills-count" class="badge">0</span></h3>
+        <div id="skills-list" class="skills-list"></div>
+      </div>
+
+      <div class="card email-card">
+        <h3>Send Report to Email</h3>
+        <p class="email-hint">Get a formatted analysis report delivered via Gmail</p>
+        <div class="input-row">
+          <input type="email" id="email-input" placeholder="recipient@email.com">
+          <button id="send-btn" class="btn btn-secondary">
+            <span class="btn-text">Send Report</span>
+            <span class="spinner hidden"></span>
+          </button>
+        </div>
+        <p id="email-status" class="status-msg hidden"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>LinkedIn Profile Analyzer &mdash; Built with Flask + Composio Gmail</p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
